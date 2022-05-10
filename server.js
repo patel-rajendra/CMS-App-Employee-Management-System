@@ -54,11 +54,22 @@ async function viewAllDepartments(){
     mainChoices();
 }
 
+// Add department
+async function addDepartment() {
 
-// Main prompt for user to choose action
+	// Asking user for department details
+	const { deptName } = await inquirer.prompt(choices.addDepartment);
+
+	// called function to execute query by passing department details
+	const result = await db.addDepartment(deptName);
+
+	viewAllDepartments();
+}
+
+// Main choice for user to choose action
 async function mainChoices() {
 	
-	// Prompt user for main prompt
+	// User for main choice
 	const { menuAction } = await inquirer.prompt(choices.mainChoices);
 	
 	switch (menuAction) {
@@ -82,6 +93,10 @@ async function mainChoices() {
 		case "View all departments":
 			viewAllDepartments();
 			break;
+        
+        case "Add Department":
+            addDepartment();
+            break;
 
 		case "Exit":
 			db.closeConnection();

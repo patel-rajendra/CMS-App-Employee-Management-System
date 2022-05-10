@@ -115,6 +115,22 @@ class Data {
 		);
 	}
 
+    // Add department in department table
+	addDepartment(deptName) {
+			this.connection.query(
+				"INSERT INTO department SET ?",
+				{
+					name: `${deptName}`,
+				},
+				function (err, res) {
+					if (err) throw err;
+					console.log("Successfully added department!!!");
+					return res;
+				}
+			);
+	}
+
+
 	 // Close database connection
 	 closeConnection() {
 		try {
