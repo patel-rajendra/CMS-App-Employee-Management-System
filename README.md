@@ -24,6 +24,7 @@ So that I can organize and plan my business
 ```
 
 # Demo : 
+https://www.screencast.com/t/SCqBwpS2mmt
 
 # Technology :
 
