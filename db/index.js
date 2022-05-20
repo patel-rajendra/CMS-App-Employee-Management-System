@@ -130,6 +130,187 @@ class Data {
 			);
 	}
 
+    // Get all departments
+	getDepartments() {
+		try {
+			return this.connection.query(
+				`
+                SELECT 
+                    * 
+                FROM department;
+                `
+			);
+		} catch (err) {
+			if (err) throw err;
+		}
+	}
+
+    // Get all roles
+	getRoles() {
+		try {
+			return this.connection.query(
+				`
+                SELECT 
+                    * 
+                FROM role;
+                `
+			);
+		} catch (err) {
+			if (err) throw err;
+		}
+	}
+
+    // Get all employees
+	getEmployees() {
+		try {
+			return this.connection.query(
+				`
+                SELECT 
+                    * 
+                FROM employee;
+                `
+			);
+		} catch (err) {
+			if (err) throw err;
+		}
+	}
+
+    // Add Role in role table
+	addRole(title, salary, departnemtId) {
+		try {
+			this.connection.query(
+				"INSERT INTO role SET ?",
+				{
+					title: `${title}`,
+					salary: `${salary}`,
+					department_id: `${departnemtId}`,
+				},
+				function (err, res) {
+					if (err) throw err;
+					console.log(
+						`\nSuccessfully added role with title:${title}, salary:${salary}, departmentId:${departnemtId}`
+					);
+					return res;
+				}
+			);
+		} catch (err) {
+			console.log("Error inserting role : " + err);
+		}
+	}
+
+    // Add employee in employee table
+	addEmployee(firstName, lastName, roleId, managerId) {
+		try {
+			this.connection.query(
+				"INSERT INTO employee SET ?",
+				{
+					first_name: `${firstName}`,
+					last_name: `${lastName}`,
+					role_id: `${roleId}`,
+					manager_id: `${managerId}`,
+				},
+				function (err, res) {
+					if (err) throw err;
+					console.log(
+						`\nSuccessfully added employee with firstName:${firstName}, lastName:${lastName}, roleId:${roleId}, managerId:{managerId}`
+					);
+					return res;
+				}
+			);
+		} catch (err) {
+			console.log("Error inserting role : " + err);
+		}
+	}
+
+    // Add department in department table
+	addDepartment(deptName) {
+		try {
+			this.connection.query(
+				"INSERT INTO department SET ?",
+				{
+					name: `${deptName}`,
+				},
+				function (err, res) {
+					if (err) throw err;
+					console.log(
+						`\nSuccessfully added ${deptName} department!`
+					);
+					return res;
+				}
+			);
+		} catch (err) {
+			console.log("Error inserting department : " + err);
+		}
+	}
+
+    // Update employee role
+	updateEmployeeRole(empId, roleId) {
+		try {
+			// UPDATE employee SET role_id = 4 WHERE id = 4;
+			this.connection.query(
+				"UPDATE employee SET ? Where ?",
+				[
+					{
+						role_id: roleId,
+					},
+					{
+						id: empId,
+					},
+				],
+				function (error) {
+					if (error) throw err;
+					console.log(`\nUpdated employee's role successfully!`);
+				}
+			);
+		} catch (err) {
+			if (err) throw err;
+		}
+	}
+
+    // Update employee manager
+	updateEmployeeManager(empId, managerId) {
+		//UPDATE employee SET manager_id = 2 WHERE id = 3;
+		try {
+			this.connection.query(
+				"UPDATE employee SET ? WHERE ?",
+				[
+					{
+						manager_id: managerId,
+					},
+					{
+						id: empId,
+					},
+				],
+				function (error) {
+					if (error) throw error;
+					console.log(`\nUpdated employee's manager successfully!`);
+				}
+			);
+		} catch (error) {
+			if (error) throw error;
+		}
+    }
+
+    // Remove employee
+    removeEmployee(empId){
+        // DELETE FROM employee WHERE id = 2;
+        try {
+			this.connection.query(
+				"DELETE FROM employee WHERE ?",
+				[
+					{
+						id: empId,
+					}
+				],
+				function (error) {
+					if (error) throw error;
+					console.log(`\nRemoved employee with id : ${empId} successfully!`);
+				}
+			);
+		} catch (error) {
+			if (error) throw error;
+		}
+    }
 
 	 // Close database connection
 	 closeConnection() {
