@@ -15,7 +15,7 @@ This application is built for manager for managing employees. Manager can view a
 * [License](#license)
 
 
-# User Story : 
+# User Story  
 
 ```
 As a business owner
@@ -23,9 +23,10 @@ I want to be able to view and manage the departments, roles, and employees in my
 So that I can organize and plan my business
 ```
 
-# Demo : 
+# Demo  
+https://www.screencast.com/t/SCqBwpS2mmt
 
-# Technology :
+# Technology 
 
 [MySQL](https://www.npmjs.com/package/mysql) NPM package
 
@@ -37,7 +38,7 @@ So that I can organize and plan my business
 
 [asciiart-logo](https://www.npmjs.com/package/asciiart-logo)
 
-# Usage :
+# Usage 
 
 * To install necessary dependencies, run the following command :
 
@@ -52,7 +53,7 @@ node server.js
 ```
 * After running above command, user is presented with series of options to manage employee databse.
 
-# Features :
+# Features 
 
 - MySql npm package is used to connect to database and perform queries.
 
